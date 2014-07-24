@@ -4,8 +4,8 @@
  */
 function omitsis_SITEID_config_permission(){
   return array(
-    'administer omitsis pbwc settings' => array(
-      'title' => t('Administer Omitsis PBWC settings'),
+    'administer SITEID settings' => array(
+      'title' => t('Administer SITEID Site settings'),
     ),
   );
 }
@@ -21,7 +21,7 @@ function omitsis_SITEID_config_menu() {
     'description' => 'Change parameters for this site.',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('omitsis_SITEID_config_settings'),
-    'access arguments' => array('administer omitsis pbwc settings'),
+    'access arguments' => array('administer SITEID settings'),
     'type' => MENU_NORMAL_ITEM,
   );
 

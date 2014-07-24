@@ -1,4 +1,4 @@
-name = Omitsis SITEID Config
-description = Omitsis SITEID site configuration
+name = Omitsis SITENAME Config
+description = Omitsis SITENAME site configuration
 core = 7.x
 package = omitsis
