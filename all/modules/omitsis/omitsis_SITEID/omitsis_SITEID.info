@@ -1,0 +1,4 @@
+name = Omitsis SITEID
+description = Omitsis SITE NAME site control
+core = 7.x
+package = Omitsis

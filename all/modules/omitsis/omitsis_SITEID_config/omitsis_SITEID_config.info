@@ -1,0 +1,4 @@
+name = Omitsis SITEID Config
+description = Omitsis SITEID site configuration
+core = 7.x
+package = omitsis
