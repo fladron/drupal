@@ -31,6 +31,7 @@ Core-ish MODULE_NAME list:
 - adminimal_admin_menu + theme adminimal_theme
 
 Optional modules:
+- devel
 - email
 - entityconnect
 - metatag
