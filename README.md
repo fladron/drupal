@@ -26,6 +26,7 @@ Core-ish MODULE_NAME list:
 - entity_view_mode
 - nodequeue
 - link
+- libraries
 - admin_menu
 - adminimal_admin_menu + theme adminimal_theme
 
