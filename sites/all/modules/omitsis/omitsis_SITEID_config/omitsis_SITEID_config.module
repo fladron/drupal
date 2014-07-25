@@ -5,7 +5,7 @@
 function omitsis_SITEID_config_permission(){
   return array(
     'administer SITEID settings' => array(
-      'title' => t('Administer SITEID Site settings'),
+      'title' => t("Administer SITEID Site settings"),
     ),
   );
 }
@@ -46,7 +46,7 @@ function omitsis_SITEID_config_settings($form, &$form_state) {
   );
   $form['crawl']['crawl_active'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Activate'),
+    '#title' => t("Activate"),
     '#default_value' => variable_get('omitsis_weloba_config_crawl_active'),
     '#description' => t("Check to show the crawl with the message, uncheck to hide it"),
   );*/
