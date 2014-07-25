@@ -77,6 +77,10 @@ function omitsis_SITEID_node_insert($node) {
  * Implements hook_block_info().
  */
 /*function omitsis_SITEID_block_info() {
+  $blocks['BLOCK_ID'] = array(
+    'info'=> variable_get('site_id') . ': BLOCK TITLE',
+    'cache' => DRUPAL_CACHE_PER_ROLE, //Default
+  );
   $blocks['twitter_stream'] = array(
     'info'=> "Omitsis: stream de Twitter",
     'cache' => DRUPAL_CACHE_PER_ROLE,
