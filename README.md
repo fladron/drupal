@@ -26,6 +26,8 @@ Core-ish MODULE_NAME list:
 - entity_view_mode
 - nodequeue
 - link
+- admin_menu
+- adminimal_admin_menu + theme adminimal_theme
 
 Optional modules:
 - email
