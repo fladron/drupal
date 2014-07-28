@@ -435,6 +435,6 @@ footer[role="contentinfo"] {
 /*********************
 * Clearfix
 **********************/
-.CLEARABLE_SELECTORS:after {
+#block-system-main-menu nav > ul.menu:after {
   content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;
 }
