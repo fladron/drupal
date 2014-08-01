@@ -23,16 +23,13 @@
     <h1><?php print $title; ?></h1>
   </header>
   <div class="content">
-     <?php if (isset($images[0]['uri']) && count($images) > 0 && !isset($video_id)){ ?>
+     <?php if (isset($images[0]['uri']) && count($images) > 0){ ?>
      <div class="image">
         <figure>
           <img src="<?php print image_style_url('ratio_16_9', $images[0]['uri']); ?>" alt="<?php print $images[0]['attr']['alt']; ?>" title="<?php print $images[0]['attr']['title']; ?>"/>
           <figcaption>
             <?php if (isset($images[0]['description'])){ ?>
               <?php print $images[0]['description']; ?>
-            <?php } ?>
-            <?php if (isset($images[0]['credits']['text'])){ ?>
-              <p class="credits">| <?php print $images[0]['credits']['text']; ?></p>
             <?php } ?>
           </figcaption>
         </figure>
