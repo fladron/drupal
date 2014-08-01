@@ -164,10 +164,17 @@ function obt_preprocess_node(&$vars) {
 
 			break;
 		case 'article': /* ***************************************************************************************************************** ARTICLE (P1) */
-			// main image
-			/*$main_image = field_get_items('node', $node_obj, 'field_image_file');
-			if (isset($main_image[0]['uri'])){
-				$vars['main_image'] = $main_image;
+			// images
+			/*$images = field_get_items('node', $node_obj, 'field_images');
+			if (isset($images[0]['uri'])){
+				if ($vars['view_mode'] == 'teaser'){
+					$vars['teaser_image'] = theme('image_style', array('path' => $images[0]['uri'], 'style_name' => '4_cols'));
+				}else{
+					$vars['images'] = array();
+					foreach ($images as $key => $image) {
+						$vars['images'][] = theme('image_style', array('path' => $image['uri'], 'style_name' => 'full_width'));
+					}
+				}
 			}*/
 			break;
 	}
