@@ -79,6 +79,7 @@ function omitsis_SITEID_config_settings_validate($form, &$form_state){
  *   during processing.
  */
 function omitsis_SITEID_config_settings_form_submit($form, &$form_state) {
+  // Attention! use ['value'] at the end for 'text_format' fields
   // CRAWL
   /*variable_set('omitsis_SITEID_config_crawl_active', $form_state['values']['crawl_active']);*/
 }
