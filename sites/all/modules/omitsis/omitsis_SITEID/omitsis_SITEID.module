@@ -11,13 +11,6 @@ function omitsis_SITEID_menu() {
     'page callback' => 'omitsis_SITEID_get_user_uid',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
-  );
-
-  $items['oasync/twitter_feeds'] = array(
-    'page callback' => 'omitsis_SITEID_render_twitter_feeds',
-    'page arguments' => array(),
-    'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
   );*/
 
   return $items;
@@ -41,7 +34,6 @@ function omitsis_SITEID_form_validate($form, &$form_state) {
  *  Implementation of hook_form_alter().
  */
 function omitsis_SITEID_form_alter(&$form, &$form_state, $form_id) {
-  //dsm($form_id);
   switch ($form_id) {
     case 'comment_form':
       $form['comment_body']['#after_build'][] = '_remove_format';
@@ -81,10 +73,6 @@ function omitsis_SITEID_node_insert($node) {
     'info'=> variable_get('site_id') . ': BLOCK TITLE',
     'cache' => DRUPAL_CACHE_PER_ROLE, //Default
   );
-  $blocks['twitter_stream'] = array(
-    'info'=> "Omitsis: stream de Twitter",
-    'cache' => DRUPAL_CACHE_PER_ROLE,
-  );
   return $blocks;
 }*/
 
@@ -96,9 +84,9 @@ function omitsis_SITEID_node_insert($node) {
 function omitsis_SITEID_block_view($delta = '') {
   $block = array();
   switch($delta){
-    /*case 'twitter_feeds':
+    /*case 'SOME_BLOCK':
       $block['subject'] = '';
-      $block['content'] = omitsis_SITEID_render_twitter_feeds();
+      $block['content'] = omitsis_SITEID_render_SOME_BLOCK();
       break;*/
   }
   return $block;
@@ -109,25 +97,10 @@ function omitsis_SITEID_block_view($delta = '') {
  */
 function omitsis_SITEID_theme($existing, $type, $theme, $path) {
   return array(
-    /*case 'twitter_stream':
-      $tw_settings = array(
-        'consumer_key' => variable_get('omitsis_SITEID_config_tw_consumer_key', ''),
-        'consumer_secret' => variable_get('omitsis_SITEID_config_tw_consumer_secret', ''),
-        'oauth_access_token' => variable_get('omitsis_SITEID_config_tw_oauth_access_token', ''),
-        'oauth_access_token_secret' => variable_get('omitsis_SITEID_config_tw_oauth_access_token_secret', ''),
-      );
-      $tw_options = array(
-        'alias' => variable_get('omitsis_SITEID_config_tw_alias', ''),
-        'count' => 1,
-      );
-      $variables = array(
-        'stream' => omitsis_SITEID_get_twitter_stream($tw_settings, $tw_options),
-      );
-      $block['subject'] = 'Twitter';
-      if (isset($variables['stream'][0]['user_alias'])) $block['subject'] = $variables['stream'][0]['user_alias'];
-      $block['content'] = theme('twitter_stream', $variables);
-      unset($variables);
-      break;*/
+    /*'SOME_THEME' => array(
+      'variables' => array(),
+      'template' => 'theme/SOME_THEME',
+    ),*/
   );
 }
 
@@ -135,7 +108,6 @@ function omitsis_SITEID_theme($existing, $type, $theme, $path) {
  *  Implements hook_menu_local_tasks_alter().
  */
 function omitsis_SITEID_menu_local_tasks_alter(&$data, $router_item, $root_path) {
-  //dsm($data['actions']);
   /*$my_profile_link = array(
   	'href' => 'user',
     'title' => t("My profile"),
@@ -278,32 +250,6 @@ function omitsis_SITEID_wysiwyg_editor_settings_alter(&$settings, $context) {
   drupal_goto('<front>');
   return false;
 }*/
-
-function omitsis_SITEID_get_twitter_stream($settings, $options){
-  $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
-  $varGET = '?screen_name='.$options['alias'].'&count=' . $options['count'];
-  $requestMethod = 'GET';
-  $obj = new TwitterAPIExchange($settings);
-  $stream = json_decode($obj->setGetfield($varGET)
-                            ->buildOauth($url, $requestMethod)
-                            ->performRequest());
-  if (isset($stream->errors)){
-    return;
-  }else{
-    $final_stream = array();
-    foreach ($stream as $key => $tweet) {
-      $tweet_date = $tweet->created_at;
-      $tweet_date_formatted = _time_ago($tweet_date);
-      $final_stream[] = array(
-        'date' => $tweet_date_formatted,
-        'user_name' => $tweet->user->name,
-        'user_alias' => '@' . $tweet->user->screen_name,
-        'body' => $tweet->text,
-      );
-    }
-    return $final_stream;
-  }
-}
 
 function _remove_format(&$form){
   unset($form[LANGUAGE_NONE][0]['format']['format']);
