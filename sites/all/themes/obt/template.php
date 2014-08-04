@@ -160,10 +160,10 @@ function obt_preprocess_node(&$vars) {
 	// other type specific fields
 	//oh_log($vars['type']);
 	switch ($vars['type']) {
-		case 'page':
+		case 'page': /********** PAGE **********/
 
 			break;
-		case 'article': /* ***************************************************************************************************************** ARTICLE (P1) */
+		case 'article': /********** ARTICLE **********/
 			// images
 			/*$images = field_get_items('node', $node_obj, 'field_images');
 			if (isset($images[0]['uri'])){
