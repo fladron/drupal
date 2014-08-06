@@ -65,33 +65,6 @@
  */
 ?>
 <li class="<?php print $classes; ?> <?php print $result['node']->type; ?>"<?php print $attributes; ?>>
-  <a href="<?php print $url; ?>" class="image-and-content">
-    <?php if (isset($image)){ ?>
-    <div class="image">
-      <img src="<?php print image_style_url('ratio_1_1', $image['uri']); ?>" alt="<?php print $image['attr']['alt']; ?>" title="<?php print $image['attr']['title']; ?>"/>
-    </div>
-    <?php } ?>
-    <div class="content">
-      <h2><?php print $title; ?></h2>
-    	<div class="summary">
-        <?php if ($snippet): ?>
-          <p class="search-snippet"<?php print $content_attributes; ?>><?php print $snippet; ?></p>
-        <?php endif; ?>
-        <?php if ($result['node']->type != 'page'): ?>
-        <p class="content-type"><?php print t($result['type']); ?></p>
-        <?php endif; ?>
-    	</div>
-  	</div>
-  </a>
-  <?php if (isset($article_info)) { ?>
-  <footer class="article-info">
-    <?php print $article_info; ?>
-  </footer>
-  <?php } ?>
-</li>
-
-<?php /*
-<li class="<?php print $classes; ?> <?php print $result['node']->type; ?>"<?php print $attributes; ?>>
   <?php print render($title_prefix); ?>
   <h2 <?php print $title_attributes; ?>>
     <a href="<?php print $url; ?>"><?php print $title; ?></a>
@@ -105,4 +78,4 @@
     <p class="content-type"><?php print $result['type']; ?></p>
     <?php endif; ?>
   </div>
-</li> */
+</li>
