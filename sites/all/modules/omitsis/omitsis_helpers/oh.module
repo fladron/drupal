@@ -257,3 +257,63 @@ function oh_get_user_comments_count($uid = NULL) {
 function oh_is_node_form_page(){
   return ((arg(0) == 'node' && (arg(1) == 'add' || arg(2) == 'edit')) || (arg(0) == 'imce'));
 }
+
+/**
+ * Gets youtube video id.
+ */
+function oh_video_url_id($video_url) {
+  $parsed_url = parse_url($video_url);
+  $page_url = $parsed_url['path'];
+  $video_id = substr($page_url , 1 , strlen($page_url) - 1);
+  return $video_id;
+}
+
+/**
+ * Gets thumbnail image for video.
+ */
+function oh_video_url_thumbnail($video_url) {
+  $video_thumbnail = 'http://img.youtube.com/vi/' . omitsis_SITEID_video_url_id($video_url) . '/0.jpg';
+  return $video_thumbnail;
+}
+
+/**
+ * Converts video share url from youtube to current embed needs.
+ */
+function oh_video_url_templating($video_url) {
+  // we get: 'http://youtu.be/yaJ3qpaAjG0?t=2m13s'
+  // we can also get: http://www.youtube.com/watch?v=BRVjP9wMz00&feature=share&t=12s
+  // and we need: '/yaJ3qpaAjG0?start=133'
+  $parsed_url = parse_url($video_url);
+  $page_url = $parsed_url['path']; // '/yaJ3qpaAjG0'
+  if(isset($parsed_url['query'])) {
+    parse_str($parsed_url['query'], $query); // 't=2m13s'
+  }
+  if ($page_url == '/watch') {
+    $page_url = '/' . $query['v'];
+  }
+  /* Convert minuntes/seconds format, to only seconds */
+  if (isset($query['t'])) {
+    $min = explode('m', $query['t']);
+    if (count($min) == 1) {     // no minutes
+      $sec = explode('s', $min[0]);
+      $sec = $sec[0];
+      $min = 0;
+    } else {                    // Minutes and seconds
+      $sec = explode('s', $min[1]);
+      $min = $min[0] * 60;
+      $sec = $sec[0];
+    }
+    $start_time = $min + $sec;
+    $page_url .= '?start=' . $start_time;
+  }
+  return $page_url;
+}
+
+function oh_get_taxonomy_root_parent($tid) {
+  $parentsArr = taxonomy_get_parents_all($tid);
+  if (!count($parentsArr)) {
+    return null;
+  }
+
+  return $parentsArr[count($parentsArr) - 1];
+}
