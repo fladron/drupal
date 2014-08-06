@@ -132,26 +132,6 @@ function omitsis_SITEID_menu_local_tasks_alter(&$data, $router_item, $root_path)
 }
 
 /**
- * Renders taxonomy lists.
- */
-function omitsis_SITEID_render_taxonomy_list($list, $list_name) {
-  $final_list = array();
-  foreach ($list as $key => $val) {
-    $term = $val['taxonomy_term'];
-    $final_list[] = array(
-      'name' => $term->name,
-      'tid' => $term->tid,
-      'description' => $term->description,
-    );
-  }
-  $variables = array(
-    'list' => $final_list,
-    'class' => $list_name,
-  );
-  return theme('taxonomy_list', $variables);
-}
-
-/**
  * Gets youtube video id.
  */
 function omitsis_SITEID_video_url_id($video_url) {
