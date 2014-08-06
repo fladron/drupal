@@ -5,8 +5,8 @@
  *
  * Available variables:
  * - $content: The array of content-related elements for the node. Use
- *   render($content) to print them all, or
- *   print a subset such as render($content['comment_form']).
+ *   render($content) to print them all, or print a subset such as
+ *   render($content['comment_form']).
  * - $classes: String of classes that can be used to style contextually through
  *   CSS. It can be manipulated through the variable $classes_array from
  *   preprocess functions. The default value has the following:
@@ -31,48 +31,30 @@
  *   into a string within the variable $classes.
  *
  * @see template_preprocess_comment_wrapper()
- *
- * @ingroup themeable
+ * @see theme_comment_wrapper()
  */
+
+// Render the comments and form first to see if we need headings.
+$comments = render($content['comments']);
+$comment_form = render($content['comment_form']);
 ?>
+<section class="comments <?php print $classes; ?>"<?php print $attributes; ?>>
+  <?php print render($title_prefix); ?>
+  <?php if ($comments && $node->type != 'forum'){ ?>
+    <header>
+      <h1><?php print t('Comments'); ?></h1>
+    </header>
+  <?php } ?>
+  <?php print render($title_suffix); ?>
 
-<div id="comments" class="<?php print $classes; ?>"<?php print $attributes; ?>>
-  <a href="#comments" data-action="add-comment"><?php print t('Add a comment'); ?></a>
-
-  <div id="comment-wrapper-nid-<?php print arg(1); ?>">
-    <?php print render($content['comments']); ?>
+  <div class="content">
+  <?php print $comments; ?>
   </div>
 
-  <?php if ($GLOBALS['user']->uid != 0) { ?>
-    <div class="new-comment">
-      <div class="author-info">
-        <div class="image">
-          <img src="<?php print image_style_url('thumbnail', $user_info['user_image']); ?>" alt="" title=""/>
-        </div>
-		    <span class="author">
-		    	<?php print l($user_info['user_name'], 'user/' . $user_info['uid']); ?>
-		    </span>
-      </div>
-      <?php print render($content['comment_form']); ?>
-    </div>
-  <?php } else { ?>
-    <div class="login">
-      <div class="author-info">
-        <div class="image">
-          <img src="<?php print image_style_url('thumbnail', $user_info['user_image']); ?>" alt="" title=""/>
-        </div>
-      </div>
-      <?php print drupal_render(drupal_get_form('user_login')); ?>
-      <div class="link-register">
-        <span>
-          <?php
-          if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
-            $query_string = array('destination' => drupal_get_path_alias('node/' . arg(1)));
-            print t('Not a user?', array(), array('context' => 'login block')) . ' ' . l(t('Register', array(), array('context' => 'login block')), 'user/register', array('attributes' => array('title' => t('Create a new user account.')), 'query' => $query_string));
-          }
-          ?>
-        </span>
-      </div>
-    </div>
+  <?php if ($comment_form){ ?>
+  <div class="comment-form">
+    <h2><?php print t('Add new comment'); ?></h2>
+    <?php print $comment_form; ?>
+  </div>
   <?php } ?>
-</div>
+</section>

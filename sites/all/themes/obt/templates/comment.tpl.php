@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Default theme implementation for comments.
@@ -13,6 +12,8 @@
  * - $created: Formatted date and time for when the comment was created.
  *   Preprocess functions can reformat it by calling format_date() with the
  *   desired parameters on the $comment->created variable.
+ * - $pubdate: Formatted date and time for when the comment was created wrapped
+ *   in a HTML5 time element.
  * - $changed: Formatted date and time for when the comment was last changed.
  *   Preprocess functions can reformat it by calling format_date() with the
  *   desired parameters on the $comment->changed variable.
@@ -32,10 +33,14 @@
  *   - comment-by-anonymous: Comment by an unregistered user.
  *   - comment-by-node-author: Comment by the author of the parent node.
  *   - comment-preview: When previewing a new or edited comment.
+ *   - first: The first comment in the list of displayed comments.
+ *   - last: The last comment in the list of displayed comments.
+ *   - odd: An odd-numbered comment in the list of displayed comments.
+ *   - even: An even-numbered comment in the list of displayed comments.
  *   The following applies only to viewers who are registered users:
  *   - comment-unpublished: An unpublished comment visible only to administrators.
  *   - comment-by-viewer: Comment by the user currently viewing the page.
- *   - comment-new: New comment since last the visit.
+ *   - comment-new: New comment since the last visit.
  * - $title_prefix (array): An array containing additional output populated by
  *   modules, intended to be displayed in front of the main title tag that
  *   appears in the template.
@@ -53,45 +58,49 @@
  *
  * @see template_preprocess()
  * @see template_preprocess_comment()
+ * @see THEME_preprocess_comment()
  * @see template_process()
  * @see theme_comment()
- *
- * @ingroup themeable
  */
 ?>
-<div class="comment standard depth-<?php print $comment->depth; ?>">
+<article class="<?php print $classes; ?>"<?php print $attributes; ?>>
 
-  <div class="author-info">
-    <div class="image">
-      <img src="<?php print image_style_url('thumbnail', $comment->variables['user']['user_image']); ?>" alt="" title=""/>
-    </div>
-    <span class="author">
-      <?php print l($comment->variables['user']['user_name'], 'user/' . $comment->variables['user']['uid']); ?>
-    </span>
-  </div>
+  <header>
+    <p class="submitted">
+      <?php print $picture; ?>
+      <?php print $submitted; ?>
+      <?php print $permalink; ?>
+    </p>
 
-  <div class="comment-text">
-    <?php hide($content['links']); ?>
-    <?php hide($content['rate_thumb_up_down']); ?>
-    <?php print render($content); ?>
-  </div>
+    <?php print render($title_prefix); ?>
+    <?php if ($title){ ?>
+      <h1<?php print $title_attributes; ?>>
+        <?php print $title; ?>
+        <?php if ($new){ ?>
+          <mark class="new"><?php print $new; ?></mark>
+        <?php } ?>
+      </h1>
+    <?php } elseif ($new){ ?>
+      <mark class="new"><?php print $new; ?></mark>
+    <?php } ?>
+    <?php print render($title_suffix); ?>
 
-  <time itemprop="datePublished" datetime="<?php print $comment->variables['comment_date_machine']; ?>"><?php print $comment->variables['comment_date_human_date'] . ' - ' . $comment->variables['comment_date_human_hour']; ?></time>
+    <?php if ($status == 'comment-unpublished'){ ?>
+      <p class="unpublished"><?php print t('Unpublished'); ?></p>
+    <?php } ?>
+  </header>
 
-  <div class="comment-links">
-    <div class="comment-respond">
-      <?php if ($GLOBALS['user']->uid != 0) { ?>
-        <?php if($comment->depth < 2): ?>
-          <?php print render($content['links']); ?>
-        <?php endif; ?>
-      <?php } else { ?>
-      <a href="#comments" data-action="require-login"><?php print t('Log in to post comments'); ?></a>
-      <?php } ?>
-    </div>
-  </div>
-  <?php if (isset($comment->variables['voting_widget'])) { ?>
-  <div class="voting-widget">
-    <?php print $comment->variables['voting_widget']; ?>
-  </div>
-  <?php } ?>
-</div>
+  <?php
+    // We hide the comments and links now so that we can render them later.
+    hide($content['links']);
+    print render($content);
+  ?>
+
+  <?php if ($signature): ?>
+    <footer class="user-signature">
+      <?php print $signature; ?>
+    </footer>
+  <?php endif; ?>
+
+  <?php print render($content['links']) ?>
+</article><!-- /.comment -->
