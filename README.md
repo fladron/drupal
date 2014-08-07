@@ -34,6 +34,8 @@ Optional modules:
 - devel
 - email
 - entityconnect
+- site_map
+- xmlsitemap
 - metatag
 - field_group
 - webform
