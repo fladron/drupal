@@ -244,6 +244,9 @@ function oh_transliterate($text) {
   return strtolower(transliteration_get($text, '?', 'en'));
 }
 
+/**
+ * Gets current user's comment count
+ */
 function oh_get_user_comments_count($uid = NULL) {
   $uid = isset($uid) ? $uid : $GLOBALS['user']->uid;
   $query = db_select('comment', 'c');
@@ -254,8 +257,30 @@ function oh_get_user_comments_count($uid = NULL) {
   return 0;
 }
 
+/**
+ * is current page a form
+ */
 function oh_is_node_form_page(){
   return ((arg(0) == 'node' && (arg(1) == 'add' || arg(2) == 'edit')) || (arg(0) == 'imce'));
+}
+
+/**
+ * Gets taxonomy term's root parent
+ */
+function oh_get_taxonomy_root_parent($tid) {
+  $parentsArr = taxonomy_get_parents_all($tid);
+  if (!count($parentsArr)) {
+    return null;
+  }
+
+  return $parentsArr[count($parentsArr) - 1];
+}
+
+/**
+* Return absolute uri
+*/
+function oh_get_absolute_path(){
+  return 'http://' . $_SERVER['SERVER_NAME'];
 }
 
 /**
@@ -307,13 +332,4 @@ function oh_video_url_templating($video_url) {
     $page_url .= '?start=' . $start_time;
   }
   return $page_url;
-}
-
-function oh_get_taxonomy_root_parent($tid) {
-  $parentsArr = taxonomy_get_parents_all($tid);
-  if (!count($parentsArr)) {
-    return null;
-  }
-
-  return $parentsArr[count($parentsArr) - 1];
 }
