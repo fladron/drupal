@@ -59,7 +59,10 @@ function obt_preprocess_html(&$vars) {
 			'http-equiv' => 'X-UA-Compatible',
 		)
 	);
-	//  Mobile viewport optimized: h5bp.com/viewport
+	drupal_add_html_head($meta_ie_render_engine, 'meta_ie_render_engine');
+
+	// Mobile viewport optimized: h5bp.com/viewport
+	// Add this for the Responsive web
 	$meta_viewport = array(
 		'#type' => 'html_tag',
 		'#tag' => 'meta',
@@ -68,10 +71,7 @@ function obt_preprocess_html(&$vars) {
 			'name' => 'viewport',
 		),
 	);
-
-	// Add header meta tag for IE to head
-	drupal_add_html_head($meta_ie_render_engine, 'meta_ie_render_engine');
-	drupal_add_html_head($meta_viewport, 'meta_viewport'); // add this for the responsive web
+  drupal_add_html_head($meta_viewport, 'meta_viewport'); 
 
   // external scripts
   if (!oh_is_node_form_page()) drupal_add_js(libraries_get_path('jquery'). '/jquery-1.7.2.min.js', array('group' => JS_FIRST));
@@ -84,7 +84,6 @@ function obt_preprocess_html(&$vars) {
 	$vars['is_format_ajax'] = obt_is_format('oasync');
 	// if is oasis, print just the content and also styles (<head>) and scripts (useful for an overlay showing just the content but with styles)
 	$vars['is_format_oasis'] = obt_is_format('oasis');
-
 }
 
 function obt_is_format($format){
