@@ -77,6 +77,28 @@ function obt_preprocess_html(&$vars) {
   if (!oh_is_node_form_page()) drupal_add_js(libraries_get_path('jquery'). '/jquery-1.7.2.min.js', array('group' => JS_FIRST));
   drupal_add_js(libraries_get_path('modernizr'). '/modernizr.custom.87176.js');
 
+  // Touch screen icons
+  $icon =  array(
+    '#tag' => 'link',
+    '#attributes' => array(
+      'href' => base_path() . path_to_theme() . '/touch-icon.png',
+      'rel' => 'apple-touch-icon',
+    ),
+  );
+  drupal_add_html_head($icon, 'meta_touch_icon');
+  $icon_sizes = array(76, 120, 152);
+  foreach($icon_sizes as $size){
+    $icon = array(
+      '#tag' => 'link',
+      '#attributes' => array(
+        'href' => base_path() . path_to_theme() . '/touch-icon-' . $size . 'x' . $size . '.png',
+        'rel' => 'apple-touch-icon',
+        'sizes' => $size . 'x' . $size,
+      ),
+    );
+    drupal_add_html_head($icon, 'meta_touch_icon_' . $size);
+  }
+
   // PAGE FORMATS
   // if is body, print just the contents of the body, without anything else (to use in async calls that also need the wrapping)
 	$vars['is_format_body'] = obt_is_format('body');
