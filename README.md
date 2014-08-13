@@ -13,7 +13,7 @@ Use drush for the following module load like
 
 Core-ish MODULE_NAME list:
 
-  ctools views token variable entity entity_translation title date pathauto transliteration wysiwyg entityreference i18n entity_view_mode nodequeue link libraries admin_menu adminimal_admin_menu adminimal_theme
+  > ctools views token variable entity entity_translation title date pathauto transliteration wysiwyg entityreference i18n entity_view_mode nodequeue link libraries admin_menu adminimal_admin_menu adminimal_theme
 
 Optional modules:
 - devel
