@@ -38,8 +38,8 @@ var config = {
 		config.LANGUAGE = $('html').attr('lang');
 
 		// For all links with rel external, open link in new tab
-	  $('body').on('click', 'a[rel="external"]', function(ev){
-	  	ev.preventDefault();
+	  $('body').on('click', 'a[rel="external"]', function(e){
+	  	e.preventDefault();
       window.open($(this).attr('href'));
 	  });
 
@@ -48,8 +48,8 @@ var config = {
 	    $('#page').prepend('<div class="cookies-message"><p>'+locale.COOKIES_MESSAGE[config.LANGUAGE]+' <a href="/node/650">'+locale.COOKIES_MORE_INFO[config.LANGUAGE]+'</a><button data-action="close" title="'+locale.CLOSE[config.LANGUAGE]+'">X</button></p></div>');
 	    setCookie('cookie_message', 'accepted', 90);
 	    var cookies_message = $('.cookies-message');
-	    cookies_message.on('click', 'button[data-action="close"]', function(ev){
-	      ev.preventDefault();
+	    cookies_message.on('click', 'button[data-action="close"]', function(e){
+	      e.preventDefault();
 	      cookies_message.fadeOut(300);
 	    });
 	  }*/
@@ -68,7 +68,7 @@ var config = {
 	  var mobile_menu = $('.mobile-menu');
 	  var main_menu = $('#block-system-main-menu > .content');
 	  mobile_menu.append(main_menu.html());
-	  $('button[data-action="open-mobile-menu"]').click(function(ev){
+	  $('button[data-action="open-mobile-menu"]').click(function(e){
 	    mobile_menu.toggleClass('opened');
 	  });*/
 	
@@ -83,15 +83,15 @@ var config = {
 	  	btn.prepend(config.AJAX_LOADING_HTML);
 	  	btn.attr('data-state', 'iddle');
 	  	var load_anim = btn.find('.ajax-progress');
-	  	btn.click(function(ev){
+	  	btn.click(function(e){
 	  		btn.prop('disabled', true);
 	  		btn.attr('data-state', 'loading');
-	  		btn.on('ajax_call_finished', function(ev){
+	  		btn.on('ajax_call_finished', function(e){
 	  			// finished loading
 	  			btn.prop('disabled', false);
 	  			btn.attr('data-state', 'finished');
 	  		});
-	  		btn.on('ajax_call_error', function(ev){
+	  		btn.on('ajax_call_error', function(e){
 	  			// error loading
 	  			btn.attr('data-state', 'error');
 	  		});
