@@ -139,4 +139,4 @@ function getCookie(c_name) {
 	  };
 	}
 
-});
+})(jQuery);
