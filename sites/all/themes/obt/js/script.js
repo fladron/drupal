@@ -27,9 +27,7 @@ var locale = {
 }
 var config = {
   LANGUAGE: 'ca',
-  BASE_URL: '',
   THEME_URL: '/sites/all/themes/MY_THEME/',
-  AJAX_LOADING_HTML: '<div class="ajax-progress ajax-progress-throbber"><div class="throbber">&nbsp;</div></div>'
 };
 
 (function($){
@@ -76,27 +74,6 @@ var config = {
 	  //$('selector').prepend('<i class="icon" />');
 	  // inserting icons at the end of
 	  //$('selector').append('<i class="icon" />');
-	
-	  // all ajax call buttons
-	  /*$('[data-ajax-call]').each(function(i){
-	  	var btn = $(this);
-	  	btn.prepend(config.AJAX_LOADING_HTML);
-	  	btn.attr('data-state', 'iddle');
-	  	var load_anim = btn.find('.ajax-progress');
-	  	btn.click(function(e){
-	  		btn.prop('disabled', true);
-	  		btn.attr('data-state', 'loading');
-	  		btn.on('ajax_call_finished', function(e){
-	  			// finished loading
-	  			btn.prop('disabled', false);
-	  			btn.attr('data-state', 'finished');
-	  		});
-	  		btn.on('ajax_call_error', function(e){
-	  			// error loading
-	  			btn.attr('data-state', 'error');
-	  		});
-	  	});
-	  });*/
 	});
 
 	$(window).load(function(){
