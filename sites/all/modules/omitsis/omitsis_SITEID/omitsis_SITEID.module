@@ -7,11 +7,12 @@ variable_set('site_id', 'SITEID');
 function omitsis_SITEID_menu() {
   $items = array();
 
-  /*$items['oasync/user/uid'] = array(
-    'page callback' => 'omitsis_SITEID_get_user_uid',
-    'access arguments' => array('access content'),
+  $items['oasync/test/%'] = array(
+    'page callback' => 'omitsis_SITEID_test',
     'type' => MENU_CALLBACK,
-  );*/
+    'page arguments' => array(2),
+    'access arguments' => array('access content'),
+  );
 
   return $items;
 }
@@ -129,6 +130,22 @@ function omitsis_SITEID_menu_local_tasks_alter(&$data, $router_item, $root_path)
       ));
       break;
   }*/
+}
+
+/*
+* Simple Test functions
+*/
+function omitsis_SITEID_test($type){
+  $response = 'No test selected, or test invalid';
+  switch ($type){
+    case 'SOME_TEST':
+      $response = array(
+        //'SOME_RESPONSE' => SOME_METHOD_THAT_RETURNS_SOMETHING(),
+      );
+      break;
+  }
+  drupal_json_output($response);
+  drupal_exit();
 }
 
 /**
