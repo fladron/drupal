@@ -151,6 +151,9 @@ function oh_shit(){
   ini_set('display_startup_errors', TRUE);
 };
 
+/***************
+* PATH FUNCTIONS
+****************/
 /*
 * Get current path alias as an array
 */
@@ -181,6 +184,10 @@ function oh_get_lang_code(){
 function oh_get_absolute_path(){
   return 'http://' . $_SERVER['SERVER_NAME'];
 }
+
+/*************
+* ------------
+**************/
 
 function oh_truncate($text, $max_length = 160, $allowed_tags = array(), $wordsafe = TRUE, $add_ellipsis = TRUE){
   return truncate_utf8(filter_xss($text, $allowed_tags), $max_length, $wordsafe, $add_ellipsis);
