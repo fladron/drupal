@@ -129,14 +129,6 @@ function oh_time_ago($date, $granularity = 2) {
   return $retval;
 }
 
-/*
-* Get current path alias as an array
-*/
-function oh_get_current_alias(){
-  $currentpath = drupal_get_path_alias();
-  return explode('/', $currentpath);
-}
-
 function oh_index_in_array($needle, $haystack){
   foreach($haystack as $key => $hay){
     if($hay === $needle){
@@ -159,13 +151,35 @@ function oh_shit(){
   ini_set('display_startup_errors', TRUE);
 };
 
-function oh_get_lang_path(){
-  global $language;
-  return $language->language . '/';
+/*
+* Get current path alias as an array
+*/
+function oh_get_current_alias(){
+  $currentpath = drupal_get_path_alias();
+  return explode('/', $currentpath);
 }
+
+/*
+* Get relative path alias of node nid, including language
+*/
+function oh_get_node_path_alias($nid){
+  return base_path() . oh_get_lang_path() . drupal_get_path_alias('node/' . $nid);
+}
+
+function oh_get_lang_path(){
+  return oh_get_lang_code() . '/';
+}
+
 function oh_get_lang_code(){
   global $language;
   return $language->language;
+}
+
+/**
+* Return absolute uri
+*/
+function oh_get_absolute_path(){
+  return 'http://' . $_SERVER['SERVER_NAME'];
 }
 
 function oh_truncate($text, $max_length = 160, $allowed_tags = array(), $wordsafe = TRUE, $add_ellipsis = TRUE){
@@ -274,13 +288,6 @@ function oh_get_taxonomy_root_parent($tid) {
   }
 
   return $parentsArr[count($parentsArr) - 1];
-}
-
-/**
-* Return absolute uri
-*/
-function oh_get_absolute_path(){
-  return 'http://' . $_SERVER['SERVER_NAME'];
 }
 
 /**
