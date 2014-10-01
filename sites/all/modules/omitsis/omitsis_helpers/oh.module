@@ -84,6 +84,28 @@ function oh_render_block($module, $delta){
   return drupal_render($block);
 }
 
+/****************
+* DATE FUNCTIONS
+*****************/
+/*
+* Converts drupal datetime into proper date array
+* @params
+*   String $datetime: drupal datetime like '2014-05-04 07:30:00'
+*   String $human_format: drupal date format slug for the human date value
+*   Boolean $is_timestamp: if $datetime is already a timestamp
+* @returns
+*   Array date array with machine and human values
+*/
+function oh_get_date_object($datetime, $human_format = 'short', $is_timestamp = FALSE){
+  if ($is_timestamp) $timestamp = $datetime;
+  else $timestamp = strtotime($datetime);
+  $date = array(
+    'machine' => $timestamp,
+    'human' => format_date($timestamp, $human_format),
+  );
+  return $date;
+}
+
 /*
 * Checks if two days are equal
 * @Params
@@ -128,6 +150,9 @@ function oh_time_ago($date, $granularity = 2) {
   }
   return $retval;
 }
+/*************
+* ------------
+**************/
 
 function oh_index_in_array($needle, $haystack){
   foreach($haystack as $key => $hay){
