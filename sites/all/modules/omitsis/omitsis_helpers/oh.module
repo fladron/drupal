@@ -96,7 +96,7 @@ function oh_render_block($module, $delta){
 * @returns
 *   Array date array with machine and human values
 */
-function oh_get_date_object($datetime, $human_format = 'short', $is_timestamp = FALSE){
+function oh_get_date_array($datetime, $human_format = 'short', $is_timestamp = FALSE){
   if ($is_timestamp) $timestamp = $datetime;
   else $timestamp = strtotime($datetime);
   $date = array(
