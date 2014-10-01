@@ -159,12 +159,17 @@ function obt_preprocess_node(&$vars) {
 
 	// Add view mode class (if not teaser, because it already has it)
 	if ($vars['view_mode'] != 'teaser') $vars['classes_array'][] = 'node-' . $vars['view_mode'];
+	
 	// entity title
   if ($vars['view_mode'] == 'full'){
-	  $entity_title = field_get_items('node', $node_obj, 'title_field');
-	  if (isset($entity_title[0]['safe_value'])){
-	    $vars['title'] = $entity_title[0]['safe_value'];
-	  }
+  	if (drupal_is_front_page()){
+  		unset($vars['title']);
+  	}else{
+	  	$entity_title = field_get_items('node', $node_obj, 'title_field');
+		  if (isset($entity_title[0]['safe_value'])){
+		    $vars['title'] = $entity_title[0]['safe_value'];
+		  }
+  	}
 	}
 
 	// body and summary

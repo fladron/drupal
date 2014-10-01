@@ -6,9 +6,11 @@
   <?php } elseif ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
   <section class="main-content">
+    <?php if (isset($title)) { ?>
     <header>
       <h1><?php print $title; ?></h1>
     </header>
+    <?php } ?>
     <div class="content">
       <div class="body">
         <?php if (isset($node_body_html)) { ?>
