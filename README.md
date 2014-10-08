@@ -28,3 +28,10 @@ Optional modules:
 - mandrill (and mandrill.php) + libraries + mailsystem
 - flag
 - restws: RESTful API
+
+Security recommendations
+------------------------
+- Go to /admin/config/media/file-system and in the field "Temporary directory" put
+
+  > sites/default/files/tmp
+  
