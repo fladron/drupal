@@ -28,4 +28,3 @@ Optional modules:
 - mandrill (and mandrill.php) + libraries + mailsystem
 - flag
 - restws: RESTful API
-- dummy_content
