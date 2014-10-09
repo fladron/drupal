@@ -85,20 +85,20 @@ function getCookie(c_name) {
 	 *
 	**/
 	GrouppedTabs = function(options){
-		this.panes = null;
 		this.selector = options.selector;
+		this.$panes = null;
 		this.block_name = options.block_name;
 		this.active_tab = options.active_tab || 0;
-	  this.pane_items = $(this.selector);
-	  this.global_pane = this.pane_items.closest('.async-container');
+	  this.$pane_items = $(this.selector);
+	  this.$global_pane = this.$pane_items.closest('.async-container');
 	  this.events = {};
-	  this.nav_list = null;
+	  this.$nav_list = null;
 	  
 	  var self = this;
 
 	  this.init = function(events){
 	  	this.events = events;
-	  	if (this.pane_items.length){
+	  	if (this.$pane_items.length){
 	  		this.prepareTabs();
 	  		this.prepareNavigation();
 	  		try {
@@ -107,36 +107,36 @@ function getCookie(c_name) {
 	  	}
 	  };
 	  this.prepareTabs = function(){
-	    this.pane_items.wrapAll('<div id="'+this.block_name+'" class="block tabs"><div class="tab-panes"></div></div>');
-	    this.panes = this.pane_items.parent();
-	    this.panes.parent().prepend('<div class="tab-nav"><ul></ul></div>');
-	    this.nav_list = this.panes.parent().find('.tab-nav ul');
-	    this.pane_items.each(function(i){
+	    this.$pane_items.wrapAll('<div id="'+this.block_name+'" class="block tabs"><div class="tab-panes"></div></div>');
+	    this.$panes = this.$pane_items.parent();
+	    this.$panes.parent().prepend('<div class="tab-nav"><ul></ul></div>');
+	    this.$nav_list = this.$panes.parent().find('.tab-nav ul');
+	    this.$pane_items.each(function(i){
 	      var this_pane = $(this);
 	      var id = this_pane.attr('data-id');
 	      if (id == undefined) id = 'tab-' + (i+1);
 	      this_pane.removeAttr('class');
 	      var title = this_pane.find('> header');
 	      title.hide();
-	      self.nav_list.append('<li data-tab-id="'+id+'"><a href="#">' + title.text() + '</a></li>');
+	      self.$nav_list.append('<li data-tab-id="'+id+'"><a href="#">' + title.text() + '</a></li>');
 	      if (i != self.active_tab) this_pane.hide();
 	    });
 	  };
 	  this.prepareNavigation = function(){
-	  	this.nav_list.find('> li').each(function(j){
+	  	this.$nav_list.find('> li').each(function(j){
 	      var this_nav_item = $(this);
 	      if (j == self.active_tab) this_nav_item.addClass('active');
 	      this_nav_item.find('> a').click(function(){
-	      	if (self.global_pane.length) self.global_pane.attr('data-selected-tab', j);
-	        self.nav_list.attr('data-tab', (j+1));
-	        self.nav_list.find('> li').each(function(k){
+	      	if (self.$global_pane.length) self.$global_pane.attr('data-selected-tab', j);
+	        self.$nav_list.attr('data-tab', (j+1));
+	        self.$nav_list.find('> li').each(function(k){
 	          if (j == k){
 	            $(this).addClass('active');
 	          }else{
 	            $(this).removeClass('active');
 	          }
 	        });
-	        self.pane_items.each(function(k){
+	        self.$pane_items.each(function(k){
 	          if (j == k){
 	            $(this).show();
 	          }else{

@@ -45,10 +45,10 @@ var config = {
 	  /*if (getCookie('cookie_message') != 'accepted'){
 	    $('#page').prepend('<div class="cookies-message"><p>'+locale.COOKIES_MESSAGE[config.LANGUAGE]+' <a href="/node/650">'+locale.COOKIES_MORE_INFO[config.LANGUAGE]+'</a><button data-action="close" title="'+locale.CLOSE[config.LANGUAGE]+'">X</button></p></div>');
 	    setCookie('cookie_message', 'accepted', 90);
-	    var cookies_message = $('.cookies-message');
-	    cookies_message.on('click', 'button[data-action="close"]', function(e){
+	    var $cookies_message = $('.cookies-message');
+	    $cookies_message.on('click', 'button[data-action="close"]', function(e){
 	      e.preventDefault();
-	      cookies_message.fadeOut(300);
+	      $cookies_message.fadeOut(300);
 	    });
 	  }*/
 
@@ -63,11 +63,11 @@ var config = {
 	  
 	  // responsive menu
 	  /*$('#page').prepend('<div class="mobile-menu"><button data-action="open-mobile-menu">Menu</button></div>');
-	  var mobile_menu = $('.mobile-menu');
-	  var main_menu = $('#block-system-main-menu > .content');
-	  mobile_menu.append(main_menu.html());
+	  var $mobile_menu = $('.mobile-menu');
+	  var $main_menu = $('#block-system-main-menu > .content');
+	  $mobile_menu.append($main_menu.html());
 	  $('button[data-action="open-mobile-menu"]').click(function(e){
-	    mobile_menu.toggleClass('opened');
+	    $mobile_menu.toggleClass('opened');
 	  });*/
 	
 	  // inserting icons at the beggining of
