@@ -176,11 +176,11 @@ function obt_preprocess_node(&$vars) {
 	$body = field_get_items('node', $node_obj, 'body');
 	if (isset($body[0]['safe_value'])){
 		$vars['node_body_html'] = $body[0]['safe_value'];
-	}
-	if (isset($body[0]['safe_summary']) && $body[0]['safe_summary'] != ''){
-		$vars['node_body_summary_html'] = $body[0]['safe_summary'];
-	}else{
-		$vars['node_body_summary_html'] = oh_truncate($body[0]['safe_value'], 160);
+		$summary = $body[0]['safe_value'];
+		if (isset($body[0]['safe_summary']) && $body[0]['safe_summary'] != ''){
+			$summary = $body[0]['safe_summary'];
+		}
+		$vars['node_body_summary_html'] = oh_truncate($summary, 160);
 	}
 
 	// other type specific fields
