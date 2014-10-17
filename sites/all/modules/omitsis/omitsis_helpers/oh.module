@@ -339,13 +339,31 @@ function oh_curl_get($url) {
 * VIDEO FUNCTIONS
 ****************/
 /**
- * Vimeo API data
+ * oEmbed video data
+ * http://www.oembed.com/
+ * @param
+ *   String $video_url: the url of the video
+ *   String $video_source: 'vimeo' (default), 'youtube'...
+ * @return
+ *   Object oEmbed video data or FALSE if not found
  */
-function oh_get_vimeo_video_data($video_url){
-  $oembed_endpoint = 'http://vimeo.com/api/oembed';
-  $json_url = $oembed_endpoint . '.json?url=' . rawurlencode($video_url);
-  $oembed = json_decode(oh_curl_get($json_url));
-  return $oembed;
+function oh_get_oembed_video_data($video_url, $video_source = 'vimeo'){
+  switch ($video_source){
+    case 'vimeo':
+      $oembed_endpoint = 'http://vimeo.com/api/oembed';
+      $json_url = $oembed_endpoint . '.json?';
+      break;
+    case 'youtube':
+      $oembed_endpoint = 'http://www.youtube.com/oembed';
+      $json_url = $oembed_endpoint . '?format=json&';
+      break;  
+  }
+  if (isset($json_url)){
+    $json_url .= 'url=' . rawurlencode($video_url);
+    $oembed = json_decode(oh_curl_get($json_url));
+    return $oembed;
+  }
+  return FALSE;
 }
 
 /**
