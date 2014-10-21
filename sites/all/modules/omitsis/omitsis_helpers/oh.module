@@ -191,11 +191,15 @@ function oh_get_current_alias(){
 * Get relative path alias of node nid, including language
 */
 function oh_get_node_path_alias($nid){
-  return base_path() . oh_get_lang_path() . drupal_get_path_alias('node/' . $nid);
+  return oh_get_base_and_lang_path() . drupal_get_path_alias('node/' . $nid);
 }
 
 function oh_get_lang_path(){
   return oh_get_lang_code() . '/';
+}
+
+function oh_get_base_and_lang_path(){
+  return base_path() . oh_get_lang_path();
 }
 
 function oh_get_lang_code(){
