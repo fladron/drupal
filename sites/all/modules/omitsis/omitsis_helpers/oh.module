@@ -141,6 +141,7 @@ function oh_time_ago($date, $granularity = 2, $date2 = NULL) {
     'minute' => 60,
     'second' => 1
   );
+  $retval = '';
   foreach ($periods as $key => $value) {
     if ($difference >= $value) {
       $time = floor($difference / $value);
