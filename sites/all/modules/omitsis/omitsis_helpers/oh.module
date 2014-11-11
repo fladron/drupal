@@ -122,12 +122,15 @@ function oh_equal_days($date1, $date2){
 * Returns phrase about how much time ago a date happened
 * @Params
 *   $date: any english formatted date
+*   $granularity: how many periods to cite, defaults 2
+*   $date2: any english formatted date, defaults NULL. If NULL, comparison will be done with today's date
 * @Returns
 *   String
 */
-function oh_time_ago($date, $granularity = 2) {
+function oh_time_ago($date, $granularity = 2, $date2 = NULL) {
   $date = strtotime($date);
-  $difference = time() - $date;
+  $date2 = ($date2 === NULL)? time() : strtotime($date2);
+  $difference = $date2 - $date;
   $periods = array(
     'decade' => 315360000,
     'year' => 31536000,
