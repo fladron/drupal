@@ -38,6 +38,8 @@
     <div id="page-wrapper">
       <?php print $page; ?>
     </div>
+    <?php }else{ ?>
+      <?php print $page; ?>
     <?php } ?>
 
     <?php print $page_bottom; ?>
