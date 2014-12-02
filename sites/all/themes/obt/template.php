@@ -228,10 +228,6 @@ function obt_preprocess_user_profile(&$vars) {
 
 }
 
-function obt_preprocess_menu_link(&$vars) {
-	
-}
-
 function obt_preprocess_block(&$vars, $hook) {
 	// Add a striping class.
 	//$vars['classes_array'][] = 'block-' . $vars['zebra'];
@@ -341,16 +337,22 @@ function obt_menu_link(array $vars) {
 
 	$sub_menu = '';
 
-	if ($element['#below']) {
-		$sub_menu = drupal_render($element['#below']);
-	}
-	$output = l($element['#title'], $element['#href'], $element['#localized_options']);
 	// Adding a class depending on the TITLE of the link (not constant)
 	$element['#attributes']['class'][] = obt_id_safe($element['#title']);
 	// Adding a class depending on the ID of the link (constant)
 	if (isset($element['#original_link']['mlid']) && !empty($element['#original_link']['mlid'])) {
 		$element['#attributes']['class'][] = 'mid-' . $element['#original_link']['mlid'];
+
+		// changing some link
+		/*if ($element['#original_link']['mlid'] == 796){
+			$element['#localized_options']['attributes']['rel'] = 'external';
+		}*/
 	}
+
+	if ($element['#below']) {
+		$sub_menu = drupal_render($element['#below']);
+	}
+	$output = l($element['#title'], $element['#href'], $element['#localized_options']);
 
 	return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
 }
