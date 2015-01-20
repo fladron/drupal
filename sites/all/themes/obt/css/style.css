@@ -435,6 +435,7 @@ footer[role="contentinfo"] {
 /*********************
 * Clearfix
 **********************/
+body.sidebar-first #main > .inner:after,
 #block-system-main-menu nav > ul.menu:after {
   content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;
 }
