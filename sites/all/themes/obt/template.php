@@ -1,5 +1,4 @@
 <?php
-define('JS_FIRST', -200);
 
 // Auto-rebuild the theme registry during theme development.
 if (theme_get_setting('clear_registry')) {
@@ -33,10 +32,6 @@ function obt_views_pre_render(&$view) {
     oh_log($result);
   }
   */
-}
-
-function obt_js_alter(&$javascript) {
-  if (!oh_is_node_form_page()) unset($javascript['misc/jquery.js']);
 }
 
 /**
@@ -74,7 +69,6 @@ function obt_preprocess_html(&$vars) {
   drupal_add_html_head($meta_viewport, 'meta_viewport'); 
 
   // external scripts
-  if (!oh_is_node_form_page()) drupal_add_js(libraries_get_path('jquery'). '/jquery-1.7.2.min.js', array('group' => JS_FIRST));
   drupal_add_js(libraries_get_path('modernizr'). '/modernizr.custom.87176.js');
 
   // Touch screen icons
