@@ -13,7 +13,7 @@ Use drush for the following module load like
 
 Core-ish MODULE_NAME list:
 
-  > ctools views token variable entity entity_translation title date pathauto transliteration wysiwyg entityreference i18n entity_view_mode nodequeue link libraries admin_menu adminimal_admin_menu adminimal_theme
+  > ctools views token variable entity entity_translation title date pathauto ckeditor transliteration entityreference i18n nodequeue link libraries admin_menu adminimal_admin_menu adminimal_theme jquery_update manualcrop-7.x-1.x-dev
 
 Optional modules:
 - devel
@@ -23,6 +23,10 @@ Optional modules:
 - xmlsitemap
 - metatag
 - field_group
+- entity_view_mode
+- honeypot
+- file_entity
+- media-7.x-2.x-dev
 - webform
 - boost
 - mandrill (and mandrill.php) + libraries + mailsystem
