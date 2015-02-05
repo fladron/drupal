@@ -15,9 +15,11 @@
   </div>
   <?php } else if ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
+  <?php if (isset($title)){ ?>
   <header>
     <h1<?php print $title_attributes; ?>><?php print $title; ?></h1>
   </header>
+  <?php } ?>
   <div class="content">
     <?php 
       // We hide the comments and links now so that we can render them later.

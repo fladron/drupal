@@ -19,9 +19,11 @@
     </a>
   <?php } elseif ($view_mode == 'full') { ?>
   <?php /* ----------------- FULL DISPLAY ----------------- */ ?>
+  <?php if (isset($title)){ ?>
   <header>
     <h1><?php print $title; ?></h1>
   </header>
+  <?php } ?>
   <div class="content">
      <?php if (isset($images[0]['uri']) && count($images) > 0){ ?>
      <div class="image">
