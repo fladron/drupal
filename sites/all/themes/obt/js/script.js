@@ -69,11 +69,7 @@ var config = {
 	  $('button[data-action="open-mobile-menu"]').click(function(e){
 	    $mobile_menu.toggleClass('opened');
 	  });*/
-	
-	  // inserting icons at the beggining of
-	  //$('selector').prepend('<i class="icon" />');
-	  // inserting icons at the end of
-	  //$('selector').append('<i class="icon" />');
+
 	});
 
 	$(window).load(function(){
