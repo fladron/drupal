@@ -10,13 +10,29 @@
   	}
 }
 
+@media all and (max-width: 650px){
+  .mobile-menu {
+    display: block;
+  }
+  #block-system-main-menu {
+    display: none;
+  }
+
+  body.sidebar-first #content,
+  #sidebar-first {
+    float: none;
+    width: 100%;
+    height: auto;
+    margin: 0 0 20px;
+  }
+}
+
 @media all and (max-width: 480px){
 	.ONE_COLUMN_SELECTORS {
 	  float: none;
     width: 100%;
     height: auto;
-    margin-right: 0;
-    margin-left: 0;
+    margin: 0 0 20px;
 	}
 }
 
