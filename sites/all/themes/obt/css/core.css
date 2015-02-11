@@ -68,10 +68,14 @@ table {
 /*********************
 * Core
 **********************/
-html {
-  font-size: 62.5%;
+html, input, select, textarea {
   font-family: Helvetica, Arial, sans-serif;
   color: #151515;
+  /*-webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;*/
+}
+html {
+  font-size: 62.5%;
   /* Sets up the Base 10 stuff */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
@@ -242,9 +246,6 @@ button, input {
   line-height: normal;
 }
 
-button, input, textarea, a[data-action] {
-	font-family: "Montserrat", "OpenSans", Helvetica, Arial, sans-serif;
-}
 button,
 input[type="button"],
 input[type="reset"],
