@@ -18,6 +18,7 @@ function oh_theme($existing, $type, $theme, $path) {
 
 /*
 * Log function
+* Would be better to use the Devel module, and the dpm() or kpr() methods
 */
 function oh_log($what, $label = '', $hidden = FALSE){
   if ($hidden) print '<!-- ';
