@@ -28,12 +28,17 @@ var locale = {
 var config = {
   LANGUAGE: 'ca',
   THEME_URL: '/sites/all/themes/MY_THEME/',
+  WINDOW_MEASURES: [],
+  RESIZE_THRESHOLD: 20 //miliseconds
 };
 
 (function($){
 	// ON READY
 	$(window).ready(function(){
+		// this always on top
 		config.LANGUAGE = $('html').attr('lang');
+    setWindowMeasures();
+    //-------------------
 
 		// For all links with rel external, open link in new tab
 	  $('body').on('click', 'a[rel="external"]', function(e){
@@ -72,7 +77,23 @@ var config = {
 
 	});
 
+	// ON LOAD
 	$(window).load(function(){
 		// FOR ALL IMAGE LOADING DEPENDANT SCRIPTS
 	});
+
+	// ON RESIZE
+  $(window).resize(debounce(onWindowResize, config.RESIZE_THRESHOLD)); // for all events that trigger continuosly, we debounce the functions called, for a better performance
+
+  // This is done exclusively for the people who loves to see if the site is responsive :P
+  function onWindowResize(){
+    // this first
+    setWindowMeasures();
+    // and then the rest to respond to these measures:
+    // ...
+  }
+
+  function setWindowMeasures(){
+    config.WINDOW_MEASURES = [window.innerWidth, window.innerHeight];
+  }
 })(jQuery);

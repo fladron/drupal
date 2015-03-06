@@ -71,6 +71,18 @@ function getCookie(c_name) {
   return "";
 }
 
+// easy debounce function
+function debounce(fn, delay) {
+  var timer = null;
+  return function() {
+    var context = this, args = arguments;
+    clearTimeout(timer);
+    timer = setTimeout(function(){
+      fn.apply(context, args);
+    }, delay);
+  };
+}
+
 (function($){
   /**
 	 * Group some content into a Tabbed group
