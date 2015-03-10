@@ -332,14 +332,6 @@ function oh_get_taxonomy_root_parent($tid) {
 }
 
 /**
- * Renders an existent drupal menu
- */
-function oh_menu($menu_name, $max_depth = 2){
-  $menu = menu_tree_all_data($menu_name, null, $max_depth);
-  return drupal_render(menu_tree_output($menu));
-}
-
-/**
 * Curl helper function
 */
 function oh_curl_get($url) {
