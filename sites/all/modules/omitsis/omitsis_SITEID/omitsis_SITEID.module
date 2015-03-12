@@ -143,6 +143,9 @@ function omitsis_SITEID_test($type){
   drupal_exit();
 }
 
+/**
+* Removes format info from a form
+*/
 function _remove_format(&$form){
   unset($form[LANGUAGE_NONE][0]['format']['format']);
   unset($form[LANGUAGE_NONE][0]['format']['guidelines']);
