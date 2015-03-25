@@ -23,17 +23,6 @@ function obt_admin_paths_alter(&$paths) {
   $paths['node/*'] = FALSE;
 }
 
-function obt_views_pre_render(&$view) {
-	//oh_log($view);
-	/*
-  if ($view->name == 'og_members_admin') {
-    $result = count($view->result);
-    oh_log('numero');
-    oh_log($result);
-  }
-  */
-}
-
 /**
  * Preprocesses the wrapping HTML.
  *
@@ -200,41 +189,12 @@ function obt_preprocess_node(&$vars) {
 	}
 }
 
-function obt_preprocess_field(&$vars) {
-/*
-	if($vars['element']['#field_name'] == 'field_team_category') {
-		dsm($vars['element']['#field_name']);
-		//if($variables['items']['0']['#markup'] == 'thedefaultvalue') {
-		//	$variables['items']['0']['#markup'] = '';
-		//}
-	}
-*/
-}
-
-function obt_preprocess_user_profile(&$vars) {
-	//dsm($vars);
-	if (isset($vars['elements']['#view_mode'])) {
-		$vars['view_mode'] = $vars['elements']['#view_mode'];
-	}
-	$viewed_node = arg(1);
-	$user_obj = user_load($vars['elements']['#account']->uid);
-
-
-}
-
 function obt_preprocess_block(&$vars, $hook) {
 	// Add a striping class.
 	//$vars['classes_array'][] = 'block-' . $vars['zebra'];
 
 	// is this a navigation block
 	$vars['is_navigation'] = ($vars['block']->module == 'menu' || in_array($vars['block']->delta, array('main-menu')));
-}
-
-/*
- * Implements hook_block_view_alter
- */
-function obt_block_view_alter(&$data, $block) {
-
 }
 
 /**
