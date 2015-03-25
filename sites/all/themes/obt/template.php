@@ -189,6 +189,11 @@ function obt_preprocess_node(&$vars) {
 	}
 }
 
+function obt_preprocess_comment(&$vars) {
+	$comment = $vars['elements']['#comment'];
+	$vars['picture'] = theme('user_picture', array('account' => $comment));
+}
+
 function obt_preprocess_block(&$vars, $hook) {
 	// Add a striping class.
 	//$vars['classes_array'][] = 'block-' . $vars['zebra'];
@@ -271,8 +276,6 @@ function obt_id_safe($string) {
 	}
 	return $string;
 }
-
-
 
 /**
  * Generate the HTML output for a menu link and submenu.
