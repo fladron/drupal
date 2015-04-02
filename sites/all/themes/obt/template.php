@@ -122,6 +122,11 @@ function obt_preprocess_page(&$vars, $hook) {
 	// must show title
 	$vars['must_show_title'] = FALSE;
 
+	// taxonomy page
+	if  (arg(0) == 'taxonomy' && arg(1) == 'term' && is_numeric(arg(2))) {
+		$vars['page']['content']['system_main']['nodes']['#prefix'] = '<div class="term-nodes">';
+    $vars['page']['content']['system_main']['nodes']['#suffix'] = '</div>';
+	}
 }
 
 function obt_preprocess_region(&$vars) {
