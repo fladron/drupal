@@ -5,7 +5,7 @@ var locale = {
     en: "Close"
   },
   COOKIES_MESSAGE: {
-    ca: "El nostre portal web web utilitza cookies amb la finalitat de millorar l'experiència de l'usuari. Al fer servir els nostres serveis acceptes l'ús que fem de les 'cookies'.",
+    ca: "El nostre portal web utilitza cookies amb la finalitat de millorar l'experiència de l'usuari. Al fer servir els nostres serveis acceptes l'ús que fem de les 'cookies'.",
     es: "Nuestro sitio web utiliza cookies con el fin de mejorar la experiencia del usuario. Al utilizar nuestros servicios aceptas el uso que hacemos de las 'cookies'.",
     en: "Our web site uses cookies to improve the user experience. Using our services you agree to the use of the 'cookies'."
   },
