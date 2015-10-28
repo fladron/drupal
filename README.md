@@ -1,5 +1,9 @@
 drupal
 ======
+Version 1.0
+CSS Based
+
+For a SASS oriented and with latest fixes, look for Version 2.0 at fladron/d7basev2
 
 All necessary files for a new Drupal site
 
